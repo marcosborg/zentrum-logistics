@@ -34,6 +34,9 @@ import {
   BACKDROP_NO_SCROLL
 } from "./chunk-Z3CCRJSG.js";
 import {
+  NgControl
+} from "./chunk-C7535BQY.js";
+import {
   ActivatedRoute,
   ChildrenOutletContexts,
   NavigationStart,
@@ -42,9 +45,6 @@ import {
   RouterLink,
   UrlSerializer
 } from "./chunk-7DCQMM5C.js";
-import {
-  NgControl
-} from "./chunk-C7535BQY.js";
 import {
   DOCUMENT,
   Location,
@@ -3880,4 +3880,4 @@ export {
    * (C) Ionic http://ionicframework.com - MIT License
    *)
 */
-//# sourceMappingURL=chunk-LXR6BB26.js.map
+//# sourceMappingURL=chunk-TPTI6COA.js.map

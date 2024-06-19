@@ -82,7 +82,7 @@ import {
   setIonicClasses,
   setOverlayId,
   toastController
-} from "./chunk-LXR6BB26.js";
+} from "./chunk-TPTI6COA.js";
 import {
   shouldUseCloseWatcher
 } from "./chunk-KVXZQOEA.js";
@@ -154,14 +154,14 @@ import {
   createGesture
 } from "./chunk-Z3CCRJSG.js";
 import {
+  NG_VALUE_ACCESSOR
+} from "./chunk-C7535BQY.js";
+import {
   ActivatedRoute,
   Router
 } from "./chunk-7DCQMM5C.js";
 import "./chunk-NX2RB3U7.js";
 import "./chunk-BW45ABTK.js";
-import {
-  NG_VALUE_ACCESSOR
-} from "./chunk-C7535BQY.js";
 import {
   CommonModule,
   DOCUMENT,
