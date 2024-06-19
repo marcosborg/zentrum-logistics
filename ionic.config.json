@@ -1,0 +1,7 @@
+{
+  "name": "Zentrum Logistics",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

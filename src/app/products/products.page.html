@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Produtos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngIf="products.length > 0">
+    <ion-item *ngFor="let product of products" (click)="updateStock(product.id)">
+      <ion-label>
+        {{ product.name }}
+      </ion-label>
+      ID: {{ product.id }}
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="products.length == 0">
+    <ion-card-header>
+      <ion-card-title>Criar produto</ion-card-title>
+      <ion-card-subtitle>Preencha com os dados abaixo</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            Referências
+          </ion-label>
+          <ion-badge *ngFor="let code of codes">{{ code }}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-select label="Categoria" label-placement="floating" [(ngModel)]="category_id">
+            <ion-select-option value="{{ category.id }}" *ngFor="let category of categories">{{ category.name
+              }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-select label="Fabricante" label-placement="floating" [(ngModel)]="manufacturer_id">
+            <ion-select-option value="{{ manufacturer.id }}" *ngFor="let manufacturer of manufacturers">{{
+              manufacturer.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="price" label="Preço" label-placement="floating"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form_data_id == 0">
+          <ion-input [(ngModel)]="part_name" label="Peça" label-placemant="floating"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button (click)="createProduct()">Criar produto</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

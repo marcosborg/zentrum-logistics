@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Fotografia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tirar foto</ion-card-title>
+      <ion-card-subtitle>Utilize um local bem iluminado e tire de forma ao estado da peça ser bem
+        visivel</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-img [src]="imageUrl"></ion-img>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="success" *ngIf="photo == true">
+    <ion-button expand="full" fill="clear" color="light" (click)="sendPhoto()">Gravar fotografia</ion-button>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-button (click)="takePicture()" color="dark" expand="full" fill="clear">Tirar fotografia</ion-button>
+  </ion-toolbar>
+</ion-footer>

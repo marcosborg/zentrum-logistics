@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="form_data">
+    <ion-card-header>
+      <ion-card-title>Cliente</ion-card-title>
+      <ion-card-subtitle>Dados do cliente</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            Data de criação
+          </ion-label>
+          {{ form_data.created_at }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[0].label }}
+          </ion-label>
+          {{ form_data.data[0].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[1].label }}
+          </ion-label>
+          {{ form_data.data[1].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[2].label }}
+          </ion-label>
+          {{ form_data.data[2].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[3].label }}
+          </ion-label>
+          {{ form_data.data[3].value }}
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            {{ form_data.data[4].label }}
+          </ion-label>
+          {{ form_data.data[4].value }} {{ form_data.data[5].value }} {{ form_data.data[6].value }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="form_data">
+    <ion-card-header>
+      <ion-card-title>Viatura</ion-card-title>
+      <ion-card-subtitle>Dados da viatura</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[7].label }}
+          </ion-label>
+          {{ form_data.data[7].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[8].label }}
+          </ion-label>
+          {{ form_data.data[8].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[9].label }}
+          </ion-label>
+          {{ form_data.data[9].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[10].label }}
+          </ion-label>
+          {{ form_data.data[10].value }}
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            {{ form_data.data[11].label }}
+          </ion-label>
+          {{ form_data.data[11].value }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="form_data">
+    <ion-card-header>
+      <ion-card-title>Avaria</ion-card-title>
+      <ion-card-subtitle>Descição da avaria</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[12].label }}
+          </ion-label>
+          {{ form_data.data[12].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[13].label }}
+          </ion-label>
+          {{ form_data.data[13].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[14].label }}
+          </ion-label>
+          {{ form_data.data[14].value }}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            {{ form_data.data[15].label }}
+          </ion-label>
+          {{ form_data.data[15].value }}
+        </ion-item>
+        <ion-item lines="none" *ngIf="form_data.data[16]">
+          <ion-label>
+            {{ form_data.data[16].label }}
+          </ion-label>
+          {{ form_data.data[16].value }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="form_data">
+    <ion-fab-button routerLink="/photo/{{ form_data.id }}">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

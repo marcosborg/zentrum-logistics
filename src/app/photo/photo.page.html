@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tirar photo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tirar foto</ion-card-title>
+      <ion-card-subtitle>Utilize um local bem iluminado e tire de forma aos códigos serem bem
+        visiveis</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-img [src]="imageUrl"></ion-img>
+      <ion-button size="small" class="ion-margin-vertical" (click)="addCode()">Adicionar código</ion-button>
+      <ion-list style="margin-top: 20px;">
+        <ion-item *ngFor="let code of codes; let i = index; trackBy: trackByIndex">
+          <ion-input [(ngModel)]="codes[i]" clearInput="true"></ion-input>
+          <ion-button fill="clear" slot="start" (click)="removeCode(i)">
+            <ion-icon slot="icon-only" name="trash" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="danger" *ngIf="codes.length > 0">
+    <ion-button expand="full" fill="clear" color="light" (click)="searchStock()">Procurar na loja</ion-button>
+  </ion-toolbar>
+  <ion-toolbar color="success" *ngIf="photo == true">
+    <ion-button expand="full" fill="clear" color="light" (click)="sendPhoto()">Enviar para análise</ion-button>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-button expand="full" fill="clear" color="dark" (click)="takePicture()">Tirar foto</ion-button>
+  </ion-toolbar>
+</ion-footer>

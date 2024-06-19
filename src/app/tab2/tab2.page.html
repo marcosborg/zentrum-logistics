@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Pedidos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let form_data of form_datas" routerLink="/request/{{ form_data.id }}">
+      <ion-label>
+        {{ form_data.data[0].value }} - {{ form_data.data[1].value }}
+        <br>
+        <ion-note>
+          {{ form_data.data[8].value }} {{ form_data.data[9].value }} {{ form_data.data[11].value }}
+        </ion-note>
+      </ion-label>
+      {{ form_data.created_at | date }}
+    </ion-item>
+  </ion-list>
+</ion-content>
