@@ -10,8 +10,8 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  url: string = 'https://ai.airbagszentrum.com/api/';
-  //url: string = 'http://127.0.0.1:8000/api/';
+  //url: string = 'https://ai.airbagszentrum.com/api/';
+  url: string = 'http://127.0.0.1:8000/api/';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -62,7 +62,7 @@ export class ApiService {
         'Authorization': 'Bearer ' + data.access_token
       })
     };
-    return this.http.get(this.url + 'form-datas', this.httpOptions);
+    return this.http.get(this.url + 'form-datas/' + data.done + '/' + data.page, this.httpOptions);
   }
 
   formData(data: any) {

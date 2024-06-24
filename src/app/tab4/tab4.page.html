@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Pedidos
+      Pedidos tratados
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="form_datas.length > 0">
   <ion-list>
     <ion-item *ngFor="let form_data of form_datas" routerLink="/request/{{ form_data.id }}">
       <ion-label>
@@ -19,4 +19,7 @@
       {{ form_data.created_at | date }}
     </ion-item>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

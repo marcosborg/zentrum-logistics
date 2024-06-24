@@ -7,13 +7,16 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonNote
+  IonNote,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent
 } from '@ionic/angular/standalone';
 import { PreferencesService } from '../services/preferences.service';
 import { ApiService } from '../services/api.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoadingController } from '@ionic/angular';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -30,7 +33,9 @@ import { LoadingController } from '@ionic/angular';
     IonLabel,
     IonNote,
     CommonModule,
-    RouterLink
+    RouterLink,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent
   ]
 })
 export class Tab2Page implements OnInit {
@@ -42,6 +47,10 @@ export class Tab2Page implements OnInit {
     private loadingController: LoadingController
   ) { }
 
+  current_page: number = 0;
+  last_page: number = 1;
+  done: boolean = false;
+
   ngOnInit() {
 
   }
@@ -52,22 +61,46 @@ export class Tab2Page implements OnInit {
         this.router.navigateByUrl('/');
       } else {
         this.access_token = resp.value;
-        this.loadingController.create().then((loading) => {
-          loading.present();
-          let data = {
-            access_token: this.access_token,
-            done: false
-          }
-          this.api.formDatas(data).subscribe((resp: any) => {
-            this.form_datas = resp;
-            loading.dismiss();
-          });
-        });
+        this.getFormDatas();
       }
     });
   }
 
   access_token: any;
   form_datas: any = [];
+
+  getFormDatas() {
+    if (this.current_page < this.last_page) {
+      this.loadingController.create().then((loading) => {
+        loading.present();
+        let data = {
+          access_token: this.access_token,
+          page: this.current_page + 1,
+          done: this.done
+        }
+        this.api.formDatas(data).subscribe((resp: any) => {
+          console.log(resp);
+          if (Array.isArray(resp.data)) {
+            this.form_datas = [...this.form_datas, ...resp.data];  // Use spread operator to merge arrays
+          } else {
+            console.warn('Unexpected response format:', resp.data);
+          }
+          this.current_page = resp.current_page;
+          this.last_page = resp.last_page;
+          loading.dismiss();
+        }, (err) => {
+          console.log(err);
+          loading.dismiss();
+        });
+      });
+    }
+  }
+
+  onIonInfinite(ev: any) {
+    this.getFormDatas();
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
+  }
 
 }
