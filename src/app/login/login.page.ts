@@ -56,10 +56,22 @@ export class LoginPage implements OnInit {
     private router: Router
   ) { }
 
-  email: string = 'marcosborges@netlook.pt';
-  password: string = 'Leonor(2024)';
+  email: string = '';
+  password: string = '';
+  screen: boolean = false;
 
   ngOnInit() {
+  }
+
+
+  ionViewWillEnter() {
+    this.preferences.checkName('access_token').then((resp: any) => {
+      if (resp.value) {
+        this.router.navigateByUrl('/tabs/tab1');
+      } else {
+        this.screen = true;
+      }
+    });
   }
 
   login() {
