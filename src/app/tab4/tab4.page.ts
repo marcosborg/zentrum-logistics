@@ -7,18 +7,18 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonNote
+  IonNote,
+  LoadingController
 } from '@ionic/angular/standalone';
 import { PreferencesService } from '../services/preferences.service';
 import { ApiService } from '../services/api.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss'],
+  selector: 'app-tab4',
+  templateUrl: 'tab4.page.html',
+  styleUrls: ['tab4.page.scss'],
   standalone: true,
   imports: [
     IonHeader,
@@ -33,7 +33,7 @@ import { LoadingController } from '@ionic/angular';
     RouterLink
   ]
 })
-export class Tab2Page implements OnInit {
+export class Tab4Page implements OnInit {
 
   constructor(
     private preferences: PreferencesService,
@@ -56,7 +56,7 @@ export class Tab2Page implements OnInit {
           loading.present();
           let data = {
             access_token: this.access_token,
-            done: false
+            done: true
           }
           this.api.formDatas(data).subscribe((resp: any) => {
             this.form_datas = resp;

@@ -39,8 +39,9 @@ import {
   provideComponentInputBinding,
   raf,
   setIonicClasses
-} from "./chunk-TPTI6COA.js";
+} from "./chunk-LO5MZEFM.js";
 import "./chunk-KVXZQOEA.js";
+import "./chunk-Z3CCRJSG.js";
 import "./chunk-JXK7R7XN.js";
 import "./chunk-NK6Z4Y22.js";
 import "./chunk-QZVSFIHM.js";
@@ -49,7 +50,6 @@ import "./chunk-4GHSFNZX.js";
 import "./chunk-JEXAUTRO.js";
 import "./chunk-5YZ4KUQP.js";
 import "./chunk-R3LVCYXH.js";
-import "./chunk-Z3CCRJSG.js";
 import {
   MaxValidator,
   MinValidator,
