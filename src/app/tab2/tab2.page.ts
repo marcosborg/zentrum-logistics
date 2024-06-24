@@ -49,7 +49,7 @@ export class Tab2Page implements OnInit {
 
   current_page: number = 0;
   last_page: number = 1;
-  done: boolean = false;
+  done: number = 0;
 
   ngOnInit() {
 

@@ -10,8 +10,8 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  url: string = 'https://ai.airbagszentrum.com/api/';
-  //url: string = 'http://127.0.0.1:8000/api/';
+  //url: string = 'https://ai.airbagszentrum.com/api/';
+  url: string = 'http://127.0.0.1:8000/api/';
 
   httpOptions = {
     headers: new HttpHeaders({
