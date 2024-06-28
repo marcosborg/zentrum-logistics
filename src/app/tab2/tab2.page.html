@@ -6,8 +6,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="form_datas.length > 0">
-  <ion-list>
+<ion-content>
+  <ion-searchbar placeholder="Pesquisar por cliente" [debounce]="1000" (ionClear)="cancel()" (ionInput)="search($event)" show-clear-button="always"></ion-searchbar>
+  <ion-list *ngIf="form_datas.length > 0">
     <ion-item *ngFor="let form_data of form_datas" routerLink="/request/{{ form_data.id }}">
       <ion-label>
         {{ form_data.data[0].value }} - {{ form_data.data[1].value }}

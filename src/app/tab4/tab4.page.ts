@@ -9,7 +9,8 @@ import {
   IonLabel,
   IonNote,
   IonInfiniteScroll,
-  IonInfiniteScrollContent
+  IonInfiniteScrollContent,
+  IonSearchbar
 } from '@ionic/angular/standalone';
 import { PreferencesService } from '../services/preferences.service';
 import { ApiService } from '../services/api.service';
@@ -35,7 +36,8 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
     CommonModule,
     RouterLink,
     IonInfiniteScroll,
-    IonInfiniteScrollContent
+    IonInfiniteScrollContent,
+    IonSearchbar
   ]
 })
 export class Tab4Page implements OnInit {
@@ -101,6 +103,24 @@ export class Tab4Page implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
+  }
+
+  search(ev: any) {
+    let search = ev.detail.value;
+    if (search.length > 3) {
+      let data = {
+        access_token: this.access_token,
+        done: this.done,
+        search: search
+      }
+      this.api.searchFormDatas(data).subscribe((resp: any) => {
+        this.form_datas = resp;
+      });
+    }
+  }
+
+  cancel() {
+    this.getFormDatas();
   }
 
 }

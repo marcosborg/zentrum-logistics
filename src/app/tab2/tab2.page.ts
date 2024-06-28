@@ -9,7 +9,8 @@ import {
   IonLabel,
   IonNote,
   IonInfiniteScroll,
-  IonInfiniteScrollContent
+  IonInfiniteScrollContent,
+  IonSearchbar
 } from '@ionic/angular/standalone';
 import { PreferencesService } from '../services/preferences.service';
 import { ApiService } from '../services/api.service';
@@ -35,7 +36,8 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
     CommonModule,
     RouterLink,
     IonInfiniteScroll,
-    IonInfiniteScrollContent
+    IonInfiniteScrollContent,
+    IonSearchbar
   ]
 })
 export class Tab2Page implements OnInit {
@@ -79,9 +81,8 @@ export class Tab2Page implements OnInit {
           done: this.done
         }
         this.api.formDatas(data).subscribe((resp: any) => {
-          console.log(resp);
           if (Array.isArray(resp.data)) {
-            this.form_datas = [...this.form_datas, ...resp.data];  // Use spread operator to merge arrays
+            this.form_datas = [...this.form_datas, ...resp.data];
           } else {
             console.warn('Unexpected response format:', resp.data);
           }
@@ -101,6 +102,24 @@ export class Tab2Page implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
+  }
+
+  search(ev: any) {
+    let search = ev.detail.value;
+    if (search.length > 3) {
+      let data = {
+        access_token: this.access_token,
+        done: this.done,
+        search: search
+      }
+      this.api.searchFormDatas(data).subscribe((resp: any) => {
+        this.form_datas = resp;
+      });
+    }
+  }
+
+  cancel() {
+    this.getFormDatas();
   }
 
 }
