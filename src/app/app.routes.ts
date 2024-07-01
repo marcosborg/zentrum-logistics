@@ -22,8 +22,13 @@ export const routes: Routes = [
     loadComponent: () => import('./products/products.page').then( m => m.ProductsPage)
   },
   {
-    path: 'product/:product_id',
+    path: 'product/:product_id/:form_data_id',
     loadComponent: () => import('./product/product.page').then( m => m.ProductPage)
   },
+  {
+    path: 'update-zcm/:form_data_id',
+    loadComponent: () => import('./update-zcm/update-zcm.page').then( m => m.UpdateZcmPage)
+  },
+
 
 ];

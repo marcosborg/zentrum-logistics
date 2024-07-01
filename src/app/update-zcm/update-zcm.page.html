@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Atualizar ZCM</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Atualizar estado
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-select [(ngModel)]="phase_id" label="Fase da venda" label-placement="floating" (ionChange)="getStatuses()">
+            <ion-select-option *ngFor="let phase of phases" value="{{ phase.id }}">{{ phase.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="statuses.length > 0">
+          <ion-select [(ngModel)]="status_id" label="Subcategoria da fase se venda" label-placement="floating">
+            <ion-select-option *ngFor="let status of statuses" value="{{ status.id }}">{{ status.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="status_id">
+          <ion-textarea [(ngModel)]="obs" label="Observações" label-placement="floating"></ion-textarea>
+        </ion-item>
+      </ion-list>
+      <ion-button (click)="zcmUpdateState()">Atualizar estado</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

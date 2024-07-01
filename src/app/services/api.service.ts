@@ -154,4 +154,34 @@ export class ApiService {
     }
     return this.http.post(this.url + 'search-form-datas', data, this.httpOptions);
   }
+
+  zcmCategories(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    }
+    return this.http.get(this.url + 'zcm/orders/categories', this.httpOptions);
+  }
+
+  zcmSubCategories(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    }
+    return this.http.get(this.url + 'zcm/orders/sub-categories/' + data.phase_id, this.httpOptions);
+  }
+
+  zcmUpdateState(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    }
+    return this.http.post(this.url + 'zcm/orders/zcm-update-state', data, this.httpOptions);
+  }
 }

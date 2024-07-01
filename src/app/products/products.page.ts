@@ -234,34 +234,14 @@ export class ProductsPage implements OnInit {
               description: product_description
             }
             this.api.createProduct(data).subscribe((resp: any) => {
+              loading.dismiss();
               let product_id = resp.id;
               if (this.form_data_id != 0) {
-                let data = {
-                  access_token: this.access_token,
-                  form_data_id: this.form_data_id
-                }
-                this.api.updateState(data).subscribe((resp) => {
-                  loading.dismiss();
-                  this.alertController.create({
-                    header: 'Atualizado',
-                    message: 'Pode continuar.',
-                    backdropDismiss: false,
-                    buttons: [
-                      {
-                        text: 'Continuar',
-                        handler: () => {
-                          this.router.navigateByUrl('/product/' + product_id);
-                        }
-                      }
-                    ]
-                  }).then((alert) => {
-                    alert.present();
-                  });
-                });
+                this.router.navigateByUrl('/product/' + product_id + '/' + this.form_data_id);
               } else {
                 loading.dismiss();
                 setTimeout(() => {
-                  this.router.navigateByUrl('/product/' + product_id);
+                  this.router.navigateByUrl('/product/' + product_id + '/0');
                 }, 1000);
               }
             });

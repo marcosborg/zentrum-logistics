@@ -60,6 +60,7 @@ export class ProductPage implements OnInit {
   imageUrl: any = 'https://ionicframework.com/docs/img/demos/card-media.png';
   access_token: any;
   product_id: any = this.route.snapshot.params['product_id'];
+  form_data_id: any = this.route.snapshot.params['form_data_id'];
   photo: boolean = false;
 
   ngOnInit() {
@@ -132,8 +133,7 @@ export class ProductPage implements OnInit {
 
     const url = 'https://ai.airbagszentrum.com/api/upload-image';
 
-    this.http.post(url, formData, httpOptions).subscribe(
-      (data) => {
+    this.http.post(url, formData, httpOptions).subscribe((data) => {
         this.alertController.create(({
           header: 'Atualizado',
           message: 'Pode avançar',
@@ -142,7 +142,7 @@ export class ProductPage implements OnInit {
             {
               text: 'Continuar',
               handler: () => {
-                this.router.navigateByUrl('tabs');
+                this.router.navigateByUrl('update-zcm/' + this.form_data_id);
               }
             }
           ]
