@@ -131,7 +131,43 @@ export class UpdateZcmPage implements OnInit {
               alert.present();
             });
           } else {
-            console.log(resp);
+            this.alertController.create({
+              header: 'Atualizado com sucesso',
+              message: 'Pode continuar para ...',
+              backdropDismiss: false,
+              buttons: [
+                {
+                  text: 'Por tratar',
+                  handler: () => {
+                    let data = {
+                      access_token: this.access_token,
+                      form_data_id: this.form_data_id
+                    }
+                    this.api.updateState(data).subscribe((resp) => {
+                      this.router.navigateByUrl('/tabs/tab2');
+                    });
+                  }
+                },
+                {
+                  text: 'Inserir peças',
+                  handler: () => {
+                    this.api.updateState(data).subscribe((resp) => {
+                      this.router.navigateByUrl('/tabs/tab1');
+                    });
+                  }
+                },
+                {
+                  text: 'Tratados',
+                  handler: () => {
+                    this.api.updateState(data).subscribe((resp) => {
+                      this.router.navigateByUrl('/tabs/tab3');
+                    });
+                  }
+                },
+              ]
+            }).then((alert) => {
+              alert.present();
+            });
           }
         }, (err) => {
           console.log(err);
@@ -146,5 +182,7 @@ export class UpdateZcmPage implements OnInit {
       });
     }
   }
+
+
 
 }
