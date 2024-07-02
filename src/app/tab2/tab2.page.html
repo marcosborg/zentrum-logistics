@@ -7,18 +7,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar placeholder="Pesquisar por cliente" [debounce]="1000" (ionClear)="cancel()" (ionInput)="search($event)" show-clear-button="always"></ion-searchbar>
+  <ion-searchbar placeholder="Pesquisar por cliente" [debounce]="1000" (ionClear)="cancel()" (ionInput)="search($event)"
+    show-clear-button="always"></ion-searchbar>
   <ion-list *ngIf="form_datas.length > 0">
-    <ion-item *ngFor="let form_data of form_datas" routerLink="/request/{{ form_data.id }}">
-      <ion-label>
-        {{ form_data.data[0].value }} - {{ form_data.data[1].value }}
-        <br>
-        <ion-note>
-          {{ form_data.data[8].value }} {{ form_data.data[9].value }} {{ form_data.data[11].value }}
-        </ion-note>
-      </ion-label>
-      {{ form_data.created_at | date }}
-    </ion-item>
+    <ion-item-sliding *ngFor="let form_data of form_datas">
+      <ion-item routerLink="/request/{{ form_data.id }}">
+        <ion-label>
+          {{ form_data.data[0].value }} - {{ form_data.data[1].value }}
+          <br>
+          <ion-note>
+            {{ form_data.data[8].value }} {{ form_data.data[9].value }} {{ form_data.data[11].value }}
+          </ion-note>
+        </ion-label>
+        {{ form_data.created_at | date }}
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option><ion-icon name="archive" (click)="updateState(form_data.id)"></ion-icon></ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

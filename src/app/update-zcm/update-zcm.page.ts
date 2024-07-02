@@ -115,77 +115,83 @@ export class UpdateZcmPage implements OnInit {
       this.loadingController.create().then((loading) => {
         loading.present();
         let data = {
-          access_token: this.access_token,
-          id: this.form_data_id,
-          phase_id: this.phase_id,
-          status_id: this.status_id,
-          obs: this.obs
+          access_token: this.access_token
         }
-        console.log(data);
-        this.api.zcmUpdateState(data).subscribe((resp: any) => {
-          loading.dismiss();
-          if (resp.error) {
+        this.api.getUser(data).subscribe((resp: any) => {
+          let email = resp.email;
+          let data = {
+            access_token: this.access_token,
+            id: this.form_data_id,
+            phase_id: this.phase_id,
+            status_id: this.status_id,
+            obs: this.obs,
+            email: email
+          }
+          this.api.zcmUpdateState(data).subscribe((resp: any) => {
+            loading.dismiss();
+            if (resp.error) {
+              this.alertController.create({
+                header: 'Aviso',
+                message: resp.message
+              }).then((alert) => {
+                alert.present();
+              });
+            } else {
+              this.alertController.create({
+                header: 'Atualizado com sucesso',
+                message: 'Pode continuar para ...',
+                backdropDismiss: false,
+                buttons: [
+                  {
+                    text: 'Por tratar',
+                    handler: () => {
+                      let data = {
+                        access_token: this.access_token,
+                        form_data_id: this.form_data_id
+                      }
+                      this.api.updateState(data).subscribe((resp) => {
+                        this.router.navigateByUrl('/tabs/tab2');
+                      });
+                    }
+                  },
+                  {
+                    text: 'Inserir peças',
+                    handler: () => {
+                      let data = {
+                        access_token: this.access_token,
+                        form_data_id: this.form_data_id
+                      }
+                      this.api.updateState(data).subscribe((resp) => {
+                        this.router.navigateByUrl('/tabs/tab1');
+                      });
+                    }
+                  },
+                  {
+                    text: 'Tratados',
+                    handler: () => {
+                      let data = {
+                        access_token: this.access_token,
+                        form_data_id: this.form_data_id
+                      }
+                      this.api.updateState(data).subscribe((resp) => {
+                        this.router.navigateByUrl('/tabs/tab4');
+                      });
+                    }
+                  },
+                ]
+              }).then((alert) => {
+                alert.present();
+              });
+            }
+          }, (err) => {
+            console.log(err);
+            loading.dismiss();
             this.alertController.create({
               header: 'Aviso',
-              message: resp.message
+              message: 'Erro a processar a informação.'
             }).then((alert) => {
               alert.present();
             });
-          } else {
-            this.alertController.create({
-              header: 'Atualizado com sucesso',
-              message: 'Pode continuar para ...',
-              backdropDismiss: false,
-              buttons: [
-                {
-                  text: 'Por tratar',
-                  handler: () => {
-                    let data = {
-                      access_token: this.access_token,
-                      form_data_id: this.form_data_id
-                    }
-                    this.api.updateState(data).subscribe((resp) => {
-                      this.router.navigateByUrl('/tabs/tab2');
-                    });
-                  }
-                },
-                {
-                  text: 'Inserir peças',
-                  handler: () => {
-                    let data = {
-                      access_token: this.access_token,
-                      form_data_id: this.form_data_id
-                    }
-                    this.api.updateState(data).subscribe((resp) => {
-                      this.router.navigateByUrl('/tabs/tab1');
-                    });
-                  }
-                },
-                {
-                  text: 'Tratados',
-                  handler: () => {
-                    let data = {
-                      access_token: this.access_token,
-                      form_data_id: this.form_data_id
-                    }
-                    this.api.updateState(data).subscribe((resp) => {
-                      this.router.navigateByUrl('/tabs/tab4');
-                    });
-                  }
-                },
-              ]
-            }).then((alert) => {
-              alert.present();
-            });
-          }
-        }, (err) => {
-          console.log(err);
-          loading.dismiss();
-          this.alertController.create({
-            header: 'Aviso',
-            message: 'Erro a processar a informação.'
-          }).then((alert) => {
-            alert.present();
           });
         });
       });
