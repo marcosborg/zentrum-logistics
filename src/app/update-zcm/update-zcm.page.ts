@@ -129,7 +129,7 @@ export class UpdateZcmPage implements OnInit {
           }
           this.api.zcmUpdateState(data).subscribe((resp: any) => {
             loading.dismiss();
-            if (resp.error) {
+            if (resp !== null && resp.error) {
               this.alertController.create({
                 header: 'Aviso',
                 message: resp.message
