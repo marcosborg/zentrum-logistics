@@ -121,6 +121,7 @@ export class UpdateZcmPage implements OnInit {
           status_id: this.status_id,
           obs: this.obs
         }
+        console.log(data);
         this.api.zcmUpdateState(data).subscribe((resp: any) => {
           loading.dismiss();
           if (resp.error) {
