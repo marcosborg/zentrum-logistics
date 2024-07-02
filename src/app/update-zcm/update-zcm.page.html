@@ -28,7 +28,8 @@
           <ion-textarea [(ngModel)]="obs" label="Observações" label-placement="floating"></ion-textarea>
         </ion-item>
       </ion-list>
-      <ion-button (click)="zcmUpdateState()">Atualizar estado</ion-button>
+      <ion-button class="ion-margin-vertical" (click)="zcmUpdateState()">Atualizar estado</ion-button>
+      <ion-button size="small" color="danger" class="ion-margin-top" (click)="updateState()">Dar como tratado sem atualizar ZCM</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

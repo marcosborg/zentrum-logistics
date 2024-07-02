@@ -137,45 +137,8 @@ export class ProductsPage implements OnInit {
     });
   }
 
-  updateStock(product_id: any) {
-    this.alertController.create({
-      header: 'Confirmação',
-      message: 'O anúncio já existe.',
-      buttons: [
-        {
-          text: 'Confirmar',
-          handler: () => {
-            let data = {
-              access_token: this.access_token,
-              form_data_id: this.form_data_id
-            }
-            this.api.updateState(data).subscribe((resp) => {
-              this.alertController.create({
-                header: 'Atualizado',
-                message: 'Pode continuar.',
-                backdropDismiss: false,
-                buttons: [
-                  {
-                    text: 'Continuar',
-                    handler: () => {
-                      window.location.href = "/tabs/tab2"
-                    }
-                  }
-                ]
-              }).then((alert) => {
-                alert.present();
-              });
-            });
-          }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        }
-      ],
-    }).then((alert) => {
-      alert.present();
-    });
+  productExist() {
+    this.router.navigateByUrl('update-zcm/' + this.form_data_id);
   }
 
   createProduct() {

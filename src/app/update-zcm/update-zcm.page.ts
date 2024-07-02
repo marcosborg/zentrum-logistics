@@ -151,6 +151,10 @@ export class UpdateZcmPage implements OnInit {
                 {
                   text: 'Inserir peças',
                   handler: () => {
+                    let data = {
+                      access_token: this.access_token,
+                      form_data_id: this.form_data_id
+                    }
                     this.api.updateState(data).subscribe((resp) => {
                       this.router.navigateByUrl('/tabs/tab1');
                     });
@@ -159,8 +163,12 @@ export class UpdateZcmPage implements OnInit {
                 {
                   text: 'Tratados',
                   handler: () => {
+                    let data = {
+                      access_token: this.access_token,
+                      form_data_id: this.form_data_id
+                    }
                     this.api.updateState(data).subscribe((resp) => {
-                      this.router.navigateByUrl('/tabs/tab3');
+                      this.router.navigateByUrl('/tabs/tab4');
                     });
                   }
                 },
@@ -183,6 +191,52 @@ export class UpdateZcmPage implements OnInit {
     }
   }
 
-
+  updateState() {
+    this.alertController.create({
+      header: 'Atualizado com sucesso',
+      message: 'Pode continuar para ...',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Por tratar',
+          handler: () => {
+            let data = {
+              access_token: this.access_token,
+              form_data_id: this.form_data_id
+            }
+            this.api.updateState(data).subscribe((resp) => {
+              this.router.navigateByUrl('/tabs/tab2');
+            });
+          }
+        },
+        {
+          text: 'Inserir peças',
+          handler: () => {
+            let data = {
+              access_token: this.access_token,
+              form_data_id: this.form_data_id
+            }
+            this.api.updateState(data).subscribe((resp) => {
+              this.router.navigateByUrl('/tabs/tab1');
+            });
+          }
+        },
+        {
+          text: 'Tratados',
+          handler: () => {
+            let data = {
+              access_token: this.access_token,
+              form_data_id: this.form_data_id
+            }
+            this.api.updateState(data).subscribe((resp) => {
+              this.router.navigateByUrl('/tabs/tab3');
+            });
+          }
+        },
+      ]
+    }).then((alert) => {
+      alert.present();
+    });
+  }
 
 }
