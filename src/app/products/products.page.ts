@@ -137,8 +137,11 @@ export class ProductsPage implements OnInit {
     });
   }
 
-  productExist() {
-    this.router.navigateByUrl('update-zcm/' + this.form_data_id);
+  productExist(product_id: any) {
+    console.log(product_id);
+    this.preferences.setName('prestashop_id', product_id).then(() => {
+      this.router.navigateByUrl('update-zcm/' + this.form_data_id);
+    });
   }
 
   createProduct() {
@@ -199,14 +202,16 @@ export class ProductsPage implements OnInit {
             this.api.createProduct(data).subscribe((resp: any) => {
               loading.dismiss();
               let product_id = resp.id;
-              if (this.form_data_id != 0) {
-                this.router.navigateByUrl('/product/' + product_id + '/' + this.form_data_id);
-              } else {
-                loading.dismiss();
-                setTimeout(() => {
-                  this.router.navigateByUrl('/product/' + product_id + '/0');
-                }, 1000);
-              }
+              this.preferences.setName('prestashop_id', product_id).then(() => {
+                if (this.form_data_id != 0) {
+                  this.router.navigateByUrl('/product/' + product_id + '/' + this.form_data_id);
+                } else {
+                  loading.dismiss();
+                  setTimeout(() => {
+                    this.router.navigateByUrl('/product/' + product_id + '/0');
+                  }, 1000);
+                }
+              });
             });
           });
         });

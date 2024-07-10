@@ -184,4 +184,44 @@ export class ApiService {
     }
     return this.http.post(this.url + 'zcm/orders/zcm-update-state', data, this.httpOptions);
   }
+
+  checkZcmStock(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    }
+    return this.http.get(this.url + 'zcm/orders/check-zcm-stock/' + data.prestashop_id, this.httpOptions);
+  }
+
+  prestashopProduct(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    }
+    return this.http.get(this.url + 'zcm/orders/prestashop-product/' + data.prestashop_id, this.httpOptions);
+  }
+
+  prestashopCreateStock(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    }
+    return this.http.post(this.url + 'zcm/orders/prestashop-create-stock', data, this.httpOptions);
+  }
+
+  prestashopUpdateStock(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    }
+    return this.http.post(this.url + 'zcm/orders/prestashop-update-stock/', data, this.httpOptions);
+  }
 }

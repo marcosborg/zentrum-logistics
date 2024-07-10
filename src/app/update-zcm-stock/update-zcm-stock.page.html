@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Atualizar ZCM</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="stock">
+    <ion-item>
+      <ion-input label="Categoria" label-placement="floating" [(ngModel)]="category"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Referência da marca" label-placement="floating" [(ngModel)]="brand_reference"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Nome" label-placement="floating" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Fabricante" label-placement="floating" [(ngModel)]="manufacturer"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Referência do fabricante" label-placement="floating" [(ngModel)]="manufacturer_reference"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Outras referencias" label-placement="floating" [(ngModel)]="other_references"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Modelo da viatura" label-placement="floating" [(ngModel)]="car_model"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" label="Stock" label-placement="floating" [(ngModel)]="stock"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Localização no stock" label-placement="floating" [(ngModel)]="stock_location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="Observações" label-placement="floating" [(ngModel)]="observations"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" label="Preço" label-placement="floating" [(ngModel)]="price"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button expand="full" fill="clear" color="light" (click)="updateZcm()">Atualizar no ZCM</ion-button>
+  </ion-toolbar>
+</ion-footer>
