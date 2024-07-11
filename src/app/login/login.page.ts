@@ -56,8 +56,8 @@ export class LoginPage implements OnInit {
     private router: Router
   ) { }
 
-  email: string = 'comercial1@zentrum-group.com';
-  password: string = 'aFnW46pc59fU6Gl';
+  email: string = '';
+  password: string = '';
   screen: boolean = false;
 
   ngOnInit() {
