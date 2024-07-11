@@ -60,7 +60,6 @@ export class UpdateZcmPage implements OnInit {
         this.access_token = resp.value;
         this.preferences.checkName('codes').then((resp: any) => {
           let codesArray: any[];
-
           try {
             codesArray = JSON.parse(resp.value);
           } catch (e) {
