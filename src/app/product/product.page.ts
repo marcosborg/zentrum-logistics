@@ -142,7 +142,7 @@ export class ProductPage implements OnInit {
             {
               text: 'Continuar',
               handler: () => {
-                this.router.navigateByUrl('update-zcm/' + this.form_data_id);
+                this.router.navigateByUrl('update-zcm-stock');
               }
             }
           ]

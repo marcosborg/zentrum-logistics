@@ -66,7 +66,6 @@ export class UpdateZcmPage implements OnInit {
             console.error('Failed to parse JSON:', e);
             return;
           }
-
           if (Array.isArray(codesArray)) {
             this.codes = codesArray.join(', ');  // Unir os códigos em uma string separada por vírgulas
             this.obs = this.codes;  // Atribuir a string resultante à propriedade obs
@@ -127,6 +126,7 @@ export class UpdateZcmPage implements OnInit {
             email: email
           }
           this.api.zcmUpdateState(data).subscribe((resp: any) => {
+            console.log(resp);
             loading.dismiss();
             if (resp !== null && resp.error) {
               this.alertController.create({
