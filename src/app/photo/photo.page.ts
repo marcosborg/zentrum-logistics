@@ -178,7 +178,9 @@ export class PhotoPage implements OnInit {
         loading.dismiss();
         this.preferences.setName('products', JSON.stringify(resp));
         this.preferences.setName('codes', JSON.stringify(this.codes));
-        this.router.navigateByUrl('products/' + this.form_data_id);
+        setTimeout(() => {
+          this.router.navigateByUrl('products/' + this.form_data_id);
+        }, 500);
       }, (err) => {
         loading.dismiss();
         console.log(err);
