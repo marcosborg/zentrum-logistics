@@ -73,36 +73,40 @@ export class UpdateZcmStockPage implements OnInit {
             this.user = resp;
             console.log(this.user);
             this.preferences.checkName('prestashop_id').then((resp) => {
-              this.prestashop_id = resp.value;
-              let data = {
-                access_token: this.access_token,
-                prestashop_id: this.prestashop_id
-              }
-              this.api.checkZcmStock(data).subscribe((resp: any) => {
-                if (resp && Object.keys(resp).length > 0) {
-                  loading.dismiss();
-                  this.stock_id = resp.id;
-                  this.category = resp.category;
-                  this.brand_reference = resp.brand_reference;
-                  this.name = resp.name;
-                  this.manufacturer = resp.manufacturer;
-                  this.manufacturer_reference = resp.manufacturer_reference;
-                  this.other_references = resp.other_references;
-                  this.car_model = resp.car_model;
-                  this.stock = resp.stock ? resp.stock : 1;
-                  this.stock_location = resp.stock_location;
-                  this.observations = resp.observations;
-                  this.price = resp.price ? resp.price : 0;
-                } else {
-                  this.api.prestashopProduct(data).subscribe((resp: any) => {
-                    loading.dismiss();
-                    this.name = resp.name[0].value;
-                    this.manufacturer = resp.manufacturer_name;
-                    this.other_references = resp.description[0].value;
-                    this.category = resp.category_name;
-                  });
+
+              setTimeout(() => {
+                this.prestashop_id = resp.value;
+                let data = {
+                  access_token: this.access_token,
+                  prestashop_id: this.prestashop_id
                 }
-              });
+                this.api.checkZcmStock(data).subscribe((resp: any) => {
+                  if (resp && Object.keys(resp).length > 0) {
+                    loading.dismiss();
+                    this.stock_id = resp.id;
+                    this.category = resp.category;
+                    this.brand_reference = resp.brand_reference;
+                    this.name = resp.name;
+                    this.manufacturer = resp.manufacturer;
+                    this.manufacturer_reference = resp.manufacturer_reference;
+                    this.other_references = resp.other_references;
+                    this.car_model = resp.car_model;
+                    this.stock = resp.stock ? resp.stock : 1;
+                    this.stock_location = resp.stock_location;
+                    this.observations = resp.observations;
+                    this.price = resp.price ? resp.price : 0;
+                  } else {
+                    this.api.prestashopProduct(data).subscribe((resp: any) => {
+                      loading.dismiss();
+                      this.name = resp.name[0].value;
+                      this.manufacturer = resp.manufacturer_name;
+                      this.other_references = resp.description[0].value;
+                      this.category = resp.category_name;
+                    });
+                  }
+                });
+              }, 1000);
+
             });
           });
         }
