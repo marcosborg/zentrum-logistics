@@ -7,6 +7,15 @@ import {
   BACKDROP_NO_SCROLL
 } from "./chunk-Z3CCRJSG.js";
 import {
+  ActivatedRoute,
+  ChildrenOutletContexts,
+  NavigationStart,
+  PRIMARY_OUTLET,
+  Router,
+  RouterLink,
+  UrlSerializer
+} from "./chunk-7DCQMM5C.js";
+import {
   LIFECYCLE_DID_ENTER,
   LIFECYCLE_DID_LEAVE,
   LIFECYCLE_WILL_ENTER,
@@ -36,15 +45,6 @@ import {
 import {
   NgControl
 } from "./chunk-C7535BQY.js";
-import {
-  ActivatedRoute,
-  ChildrenOutletContexts,
-  NavigationStart,
-  PRIMARY_OUTLET,
-  Router,
-  RouterLink,
-  UrlSerializer
-} from "./chunk-7DCQMM5C.js";
 import {
   DOCUMENT,
   Location,
@@ -3880,4 +3880,4 @@ export {
    * (C) Ionic http://ionicframework.com - MIT License
    *)
 */
-//# sourceMappingURL=chunk-LO5MZEFM.js.map
+//# sourceMappingURL=chunk-SCE5OOH4.js.map

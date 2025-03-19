@@ -82,7 +82,7 @@ import {
   setIonicClasses,
   setOverlayId,
   toastController
-} from "./chunk-LO5MZEFM.js";
+} from "./chunk-SCE5OOH4.js";
 import {
   shouldUseCloseWatcher
 } from "./chunk-KVXZQOEA.js";
@@ -90,6 +90,10 @@ import {
   GESTURE_CONTROLLER,
   createGesture
 } from "./chunk-Z3CCRJSG.js";
+import {
+  ActivatedRoute,
+  Router
+} from "./chunk-7DCQMM5C.js";
 import {
   iosTransitionAnimation
 } from "./chunk-JXK7R7XN.js";
@@ -156,10 +160,6 @@ import {
 import {
   NG_VALUE_ACCESSOR
 } from "./chunk-C7535BQY.js";
-import {
-  ActivatedRoute,
-  Router
-} from "./chunk-7DCQMM5C.js";
 import "./chunk-NX2RB3U7.js";
 import "./chunk-BW45ABTK.js";
 import {
